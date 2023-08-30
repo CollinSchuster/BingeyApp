@@ -22,6 +22,7 @@ function Dashboard() {
       navigate('/login');
     } else {
       dispatch(getGoals());
+      console.log(user.token)
     }
 
     return () => {

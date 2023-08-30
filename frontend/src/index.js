@@ -5,15 +5,18 @@ import { store } from './app/store';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import './index.css';
+import { GlobalContextProvider } from './Context/global'
 
 const container = document.getElementById('root');
 const root = createRoot(container);
 
 root.render(
   <React.StrictMode>
-    <Provider store={store}>
-      <App />
-    </Provider>
+    <GlobalContextProvider>
+      <Provider store={store}>
+        <App />
+      </Provider>
+    </GlobalContextProvider>
   </React.StrictMode>
 );
 

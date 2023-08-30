@@ -15,19 +15,17 @@ const registerUser = asyncHandler(async(req, res) => {
   }
 
   // check if user exists 
-
   const userExists = await User.findOne({email})
-
   if (userExists) {
     res.status(400)
     throw new Error('User already exists')
   }
 
-  // Hash Password
+ //Hash Password
   const salt = await bcrypt.genSalt(10) // takes in a number of rounds
   const hashedPassword = await bcrypt.hash(password, salt)
 
-  // Create User
+  // Create User  (creates an entry in the database)
   const user = await User.create({
     name,
     email,
@@ -39,6 +37,7 @@ const registerUser = asyncHandler(async(req, res) => {
       _id: user.id,
       name: user.name,
       email: user.email,
+      isAdmin: user.isAdmin,
       token: generateToken(user._id) // puts in the actual token from the generateToken const below for the user with _id
     })
   } else {
@@ -54,13 +53,14 @@ const loginUser = asyncHandler(async(req, res) => {
   const {email, password} = req.body
 
     //check for user email 
-  const user = await User.findOne({email})
+  const user = await User.findOne({email}) 
 
   if (user && (await bcrypt.compare(password, user.password))){ // bcrypt.compare will compare the stored password with the typed in password
     res.json({ // sends back the id name and email
       _id: user.id,
       name: user.name,
       email: user.email,
+      isAdmin: user.isAdmin,
       token: generateToken(user._id) // puts in the actual token from the generateToken const below for the user with _id
     })
   } else {
@@ -85,9 +85,27 @@ const generateToken = (id) /* the id is going to be the payload*/ => {
   })
 }
 
+const fetchAllUsersController = asyncHandler(async (req, res) => { //fetches all the users that are on the application
+  const keyword = req.query.search
+    ? {
+        $or: [
+          { name: { $regex: req.query.search, $options: "i" } },
+          { email: { $regex: req.query.search, $options: "i" } },
+        ],
+      }
+    : {};
+
+  const users = await User.find(keyword).find({
+    _id: { $ne: req.user._id },
+  });
+  res.send(users);
+});
+
+
 
 module.exports = {
   registerUser, 
   loginUser,
   getMe,
+  fetchAllUsersController,
 }

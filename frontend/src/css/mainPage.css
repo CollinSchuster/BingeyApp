@@ -1,0 +1,23 @@
+.trailer-block{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  margin-left: 3vw;
+  width: 75%; /* You can adjust this width as needed */
+  background-color: #000000;
+  box-sizing: border-box;
+  position: absolute;
+
+
+  top: calc(25vh); /* One-fourth of viewport height */
+  left: 50%;
+  transform: translateX(-50%);
+
+}
+
+#manual-trailer {
+  width: 100%; 
+  aspect-ratio: 16/9;
+  pointer-events: none
+}
