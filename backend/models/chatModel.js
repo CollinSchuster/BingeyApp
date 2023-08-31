@@ -4,7 +4,7 @@ const chatModel = mongoose.Schema(
   {
     chatName: { type: String },
     isGroupChat: { type: Boolean },
-    users: [
+    users: [ // an array that contains a bunch of users inside of it
       {
         type: mongoose.Schema.Types.ObjectId,
         ref: "User",
@@ -20,7 +20,7 @@ const chatModel = mongoose.Schema(
     },
   },
   {
-    timeStamp: true,
+    timeStamp: true, // Enables createdAt and updatedAt
   }
 );
 

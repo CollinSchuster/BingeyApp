@@ -3,7 +3,7 @@ const Chat = require("../models/chatModel");
 const User = require("../models/userModel");
 
 const accessChat = asyncHandler(async (req, res) => {
-  const { userId } = req.body;
+  const { userId } = req.body; // you need the user's id to access the chat
 
   if (!userId) {
     console.log("UserId param not sent with request");
@@ -13,21 +13,21 @@ const accessChat = asyncHandler(async (req, res) => {
   var isChat = await Chat.find({
     isGroupChat: false,
     $and: [
-      { users: { $elemMatch: { $eq: req.user._id } } },
+      { users: { $elemMatch: { $eq: req.user._id } } }, // projects the first ellement in the array that matches the specified condition
       { users: { $elemMatch: { $eq: userId } } },
     ],
   })
-    .populate("users", "-password")
-    .populate("latestMessage");
+    .populate("users", "-password") // populates the users in the chat 
+    .populate("latestMessage"); // populates the latest message
 
   isChat = await User.populate(isChat, {
     path: "latestMessage.sender",
     select: "name email",
   });
 
-  if (isChat.length > 0) {
+  if (isChat.length > 0) { // chat already existed 
     res.send(isChat[0]);
-  } else {
+  } else { // chat did not exist before.
     var chatData = {
       chatName: "sender",
       isGroupChat: false,
@@ -40,7 +40,7 @@ const accessChat = asyncHandler(async (req, res) => {
         "users",
         "-password"
       );
-      res.status(200).json(FullChat);
+      res.status(200).json(FullChat); // sends back the entire chat
     } catch (error) {
       res.status(400);
       throw new Error(error.message);
@@ -50,7 +50,7 @@ const accessChat = asyncHandler(async (req, res) => {
 
 const fetchChats = asyncHandler(async (req, res) => {
   try {
-    console.log("Fetch Chats aPI : ", req);
+    // console.log("Fetch Chats API : ", req);
     Chat.find({ users: { $elemMatch: { $eq: req.user._id } } })
       .populate("users", "-password")
       .populate("groupAdmin", "-password")
@@ -83,7 +83,6 @@ const createGroupChat = asyncHandler(async (req, res) => {
   if (!req.body.users || !req.body.name) {
     return res.status(400).send({ message: "Data is insufficient" });
   }
-
   var users = JSON.parse(req.body.users);
   console.log("chatController/createGroups : ", req);
   users.push(req.user);
@@ -132,10 +131,34 @@ const groupExit = asyncHandler(async (req, res) => {
   }
 });
 
+const addSelfToGroup = asyncHandler(async (req, res) => {
+  const { chatId, userId } = req.body;
+
+  const added = await Chat.findByIdAndUpdate(
+    chatId,
+    {
+      $push: { users: userId },
+    },
+    {
+      new: true,
+    }
+  )
+    .populate("users", "-password")
+    .populate("groupAdmin", "-password");
+
+  if (!added) {
+    res.status(404);
+    throw new Error("Chat Not Found");
+  } else {
+    res.json(added);
+  }
+});
+
 module.exports = {
   accessChat,
   fetchChats,
   fetchGroups,
   createGroupChat,
   groupExit,
+  addSelfToGroup,
 };

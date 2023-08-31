@@ -114,24 +114,15 @@ function ChatArea() {
     return (
       <div className={styles["chatArea-container"]}>
         <div className={styles["chatArea-header"]}>
-          {conversations.map((conversation, index) => {
-            if (conversation.users.length === 1) {
-              return <div key={index}></div>;
-            } else {
-              return (
-                <>
-                <p className={styles["con-icon"]}>
-                  {conversation.users[1].name[0]}
-                </p>
-                <div className={styles["header-text"]}>
-                  <p className={styles["con-title"]}>
-                    {conversation.users[1].name}
-                  </p>
-                </div>
-                </>
-              );
-            }
-          })}
+          {console.log(user)}
+          <p className={styles["con-icon"]}>
+            {chat_user[0]}
+          </p>
+          <div className={styles["header-text"]}>
+            <p className={styles["con-title"]}>
+              {chat_user}
+            </p>
+          </div>
           <IconButton className={styles["icon"]}>
             <DeleteIcon />
           </IconButton>
@@ -161,7 +152,6 @@ function ChatArea() {
             }}
             onKeyDown={(event) => {
               if (event.code == "Enter") {
-                // console.log(event);
                 sendMessage();
                 setMessageContent("Type a Message");
                 setRefresh(!refresh);

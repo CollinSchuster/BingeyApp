@@ -19,7 +19,6 @@ function MessageOthers({ props }) {
             <p className={styles["con-lastMessage"]}>
               {props.content}
             </p>
-            {/* <p className="self-timeStamp">12:00am</p> */}
           </div>
         </div>
       </div>

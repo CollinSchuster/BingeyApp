@@ -82,8 +82,6 @@ function Groups() {
               />
             </div>
             {groups.map((group, index) => {
-              console.log(group.groupAdmin)
-              console.log(user._id)
               if (group.groupAdmin !== user._id) {
                 return (<></>);
               } else {
@@ -95,13 +93,11 @@ function Groups() {
                       className={styles["list-tem"]}
                       key={index}
                       onClick={() => {
-                        console.log(group);
                       }}
                     >
                       <p className={styles["con-icon"]}>T</p>
                       <p className={styles["con-title"]}>
                         {group.chatName}
-                        {console.log(group.chatName)}
                       </p>
                     </motion.div>
                   </div>

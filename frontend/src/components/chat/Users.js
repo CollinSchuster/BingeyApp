@@ -36,8 +36,8 @@ function Users() {
       },
     };
     axios.get("http://localhost:3001/api/users/fetchUsers", config).then((data) => {
-      console.log("UData refreshed in Users panel ");
-      console.log(data)
+      // console.log("UData refreshed in Users panel ");
+      // console.log(data)
       setOtherUsers(data.data);
       // setRefresh(!refresh); this was commented out in the code
     });
@@ -99,9 +99,9 @@ function Users() {
                       },
                     };
                     axios.post(
-                      "http://localhost:3001/api/chat/",
+                      "http://localhost:3001/api/chat/", // accesses the chat
                       {
-                        userId: users._id,
+                        userId: users._id, // for the user with this ID
                       },
                       config
                     );

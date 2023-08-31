@@ -41,8 +41,8 @@ function ChatSidebar() {
   const [conversations, setConversations] = useState([]);
   // console.log("Conversations of Sidebar : ", conversations);
   const {user} = useSelector((state) => state.auth)
-  // const userData = JSON.parse(localStorage.getItem("userData"));
-  // console.log("Data from LocalStorage : ", userData);
+
+  // console.log("Data from LocalStorage : ", user);
   const nav = useNavigate();
   if (!user) {
     console.log("User not Authenticated");
@@ -136,10 +136,21 @@ function ChatSidebar() {
       </div>
       <div className={styles["sb-conversations"]}>
         {conversations.map((conversation, index) => {
-          // console.log("current convo : ", conversation);
-          if (conversation.users.length === 1) {
-            return <div key={index}></div>;
+          console.log("current convo : ", conversation);
+          console.log(conversation.isGroupChat)
+          var chatName = "";
+          if (conversation.isGroupChat) {
+            chatName = conversation.chatName;
+          } else {
+            conversation.users.map((userData) => {
+              if (user._id !== userData._id) { // sets the other users name as the name of the chat 
+                chatName = userData.name;
+              }
+            })
           }
+          // if (conversation.users.length === 1) {
+          //   return <div key={index}></div>;
+          // }
           if (conversation.latestMessage === undefined) {
             // console.log("No Latest Message with ", conversation.users[1]);
             return (
@@ -159,27 +170,69 @@ function ChatSidebar() {
                       "chat/" +
                         conversation._id +
                         "&" +
-                        conversation.users[1].name
+                        // conversation.users[1].name
+                        chatName
                     );
                   }}
                   // dispatch change to refresh so as to update chatArea
                 >
                   <p className={styles["con-icon"]}>
-                    {conversation.users[1].name[0]}
+                    {chatName[0]}
                   </p>
                   <p className={styles["con-title"]}>
-                    {conversation.users[1].name}
+                    {chatName}
                   </p>
                   <p className={styles["con-lastMessage"]}>
                     No previous Messages, click here to start a new chat
                   </p>
                   <p className={styles["con-timeStamp"]}>
-                    {conversation.timeStamp}
+                    {new Date(conversation.users[0].createdAt).toLocaleString("en-US")}
                   </p>
                 </div>
               </div>
             );
           } else {
+            console.log(conversation)
+            return (
+              <div
+                key={index}
+                className={styles["conversation-container"]}
+                onClick={() => {
+                  navigate(
+                    "chat/" +
+                      conversation._id +
+                      "&" +
+                      chatName
+                  );
+                }}
+              >
+                <p className={styles["con-icon"]}>
+                  {chatName[0]}
+                </p>
+                <p className={styles["con-title"]}>
+                  {chatName}
+                </p>
+                <p className={styles["con-lastMessage"]}>
+                </p>
+                <p className={styles["con-timeStamp"]}>
+                  {new Date(conversation.users[0].createdAt).toLocaleString("en-US")}
+                </p>
+              </div>
+            );
+          }
+        })}
+      </div>
+    </div>
+  );
+}
+
+export default ChatSidebar
+
+
+/*
+PREVIOUS WORKING CHATSIDEBAR
+
+else {
             console.log(conversation)
             return (
               <div
@@ -209,10 +262,5 @@ function ChatSidebar() {
               </div>
             );
           }
-        })}
-      </div>
-    </div>
-  );
-}
 
-export default ChatSidebar
+\*/
