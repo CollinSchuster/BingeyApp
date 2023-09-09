@@ -74,10 +74,6 @@ body::-webkit-scrollbar-thumb {
   height: 2vh; 
 }
 
-/*<Route path="/" element={<SearchPage />} />
-        <Route path="/anime/:id" element={<AnimeItem />} />
-  <Route path="/character/:id" element={<Gallery />} />*/
-
 a img {
   overflow: hidden;
 }

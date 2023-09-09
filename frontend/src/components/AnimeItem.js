@@ -1,10 +1,17 @@
 import React, { useEffect } from "react";
-import { Link, useParams } from 'react-router-dom'
+import { Link, useParams, useNavigate } from 'react-router-dom'
 import "../css/main.css"
 import styled from 'styled-components'
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 function AnimeItem() {
   const {id} = useParams()
+  const navigate = useNavigate();
+
+    // Function to handle going back to the previous page
+    const goBack = () => {
+      navigate(-1); // Navigate back one step in the history stack
+    };
 
   //state
   const [anime, setAnime] = React.useState({})
@@ -43,6 +50,7 @@ function AnimeItem() {
 
   return (
     <AnimeItemStyled>
+      <ArrowBackIcon onClick={goBack}/>
       <h1>{title}</h1>
       <div className="details">
         <div className="detail">

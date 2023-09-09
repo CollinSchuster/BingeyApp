@@ -6,6 +6,7 @@ import {getBookmarks, reset} from '../features/bookmarks/bookmarkSlice'
 import BookmarkItem from '../components/bookmarkItem'
 import Spinner from '../components/Spinner';
 import styled from 'styled-components'
+import styles from '../css/bookmarkPage.module.css'
 
 function BookmarkPage() {
   const navigate = useNavigate();
@@ -42,19 +43,17 @@ function BookmarkPage() {
 
   return (
     <BookmarkPageStyled>
-      <div className='bookmark-header'>
         {bookmarks.length > 0 ? (
-            <div >
+            <div className={styles['bookmarked-container']}>
               {bookmarks.map((bookmark) => (
-                <div>
-                  <BookmarkItemMemo key={bookmark.mal_id} bookmark={bookmark} />
-                </div>
+                  <div className={['bookmarked-item']}>
+                    <BookmarkItemMemo key={bookmark.mal_id} bookmark={bookmark} />
+                  </div>
               ))}
             </div>
           ) : (
             <h3>You have not set any bookmarks</h3>
           )}
-      </div>
     </BookmarkPageStyled>
   )
 }
@@ -104,6 +103,7 @@ const BookmarkPageStyled = styled.div`
     height: 100%;
     border-radius: 5px;
   }
+
   @media screen and (max-width: 600px) {
     margin-left: 0;
     padding-left: 2rem;

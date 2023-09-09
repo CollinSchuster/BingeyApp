@@ -14,8 +14,6 @@ import styles from './chat.module.css'
 function Users() {
   // const [refresh, setRefresh] = useState(true);
   const { refresh, setRefresh } = useContext(myContext);
-
-  const lightTheme = useSelector((state) => state.themeKey);
   const [otherUsers, setOtherUsers] = useState([]);
   const {user} = useSelector((state) => state.auth)
   // console.log("Data from LocalStorage : ", userData);
@@ -37,11 +35,13 @@ function Users() {
     };
     axios.get("http://localhost:3001/api/users/fetchUsers", config).then((data) => {
       // console.log("UData refreshed in Users panel ");
-      // console.log(data)
+      console.log(data)
       setOtherUsers(data.data);
       // setRefresh(!refresh); this was commented out in the code
     });
   }, [refresh]);
+
+  console.log("user: ",user)
 
   return (
       <div className={styles["main-container"]}>
@@ -81,6 +81,7 @@ function Users() {
               className={styles["search-box"]}
             />
           </div>
+
           <div className={styles["ug-list"]}>
             {otherUsers.map((users, index) => {
               return (
@@ -101,12 +102,13 @@ function Users() {
                     axios.post(
                       "http://localhost:3001/api/chat/", // accesses the chat
                       {
-                        userId: users._id, // for the user with this ID
+                        userId: users._id // for the user with this ID
                       },
                       config
                     );
                     dispatch(refreshSidebarFun());
-                  }}
+                  }
+                }
                 >
                   <p className={styles["con-icon"]}>T</p>
                   <p className={styles["con-title"]}>

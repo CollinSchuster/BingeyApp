@@ -4,7 +4,6 @@ import Dashboard from './pages/Dashboard';
 import BookmarkPage from "./components/bookmarkPage";
 import Login from './pages/Login';
 import Main from "./components/mainPage";
-// import "./css/main.css"
 import Register from './pages/Register';
 import AnimeItem from "./components/AnimeItem";
 import Gallery from "./components/Gallery";
@@ -14,7 +13,6 @@ import 'react-toastify/dist/ReactToastify.css'
 import { ToastContainer } from 'react-toastify'
 
 import ChatPage from './components/chat/chatPage.js'
-// import Login from "./components/chat/Login";
 import Welcome from "./components/chat/Welcome";
 import ChatArea from "./components/chat/chatArea";
 import Users from "./components/chat/Users";
@@ -26,11 +24,9 @@ function App() {
     <>
       <Router>
         <div className='container'>
-          {/* <Header /> */}
           <Routes>
             <Route path='/' element={<Dashboard />}></Route>
-            {/* <Route path='/' element={<Login />}></Route> */}
-            <Route path='/login' element={<Login />}></Route>
+            <Route path='/login' element={<><Header /><Login /></>}></Route>
             <Route path='/register' element={<Register />}></Route>
             <Route path='/home' element={<><Header /><Navbar /></>} />
             <Route path='/bookmarks' element={<><Header /><BookmarkPage /><Navbar /></>} />

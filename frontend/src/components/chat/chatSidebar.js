@@ -100,25 +100,10 @@ function ChatSidebar() {
           >
             <AddCircleIcon className={styles["icon"]} />
           </IconButton>
-
-          <IconButton
-            onClick={() => {
-              // dispatch(toggleTheme());
-            }}
-          >
-            {lightTheme && (
-              <NightlightIcon
-                className={styles["icon"]}
-              />
-            )}
-            {!lightTheme && (
-              <LightModeIcon className={styles["icon"]} />
-            )}
-          </IconButton>
           <IconButton
             onClick={() => {
               localStorage.removeItem("userData");
-              navigate("/");
+              navigate("/home");
             }}
           >
             <ExitToAppIcon className={styles["icon"]} />
@@ -136,8 +121,8 @@ function ChatSidebar() {
       </div>
       <div className={styles["sb-conversations"]}>
         {conversations.map((conversation, index) => {
-          console.log("current convo : ", conversation);
-          console.log(conversation.isGroupChat)
+          // console.log("current convo : ", conversation);
+          // console.log(conversation.isGroupChat)
           var chatName = "";
           if (conversation.isGroupChat) {
             chatName = conversation.chatName;
@@ -151,7 +136,7 @@ function ChatSidebar() {
           // if (conversation.users.length === 1) {
           //   return <div key={index}></div>;
           // }
-          if (conversation.latestMessage === undefined) {
+          if (conversation.latestMessage === null || conversation.latestMessage === undefined) { // undefined would not work in this context 
             // console.log("No Latest Message with ", conversation.users[1]);
             return (
               <div
@@ -186,13 +171,11 @@ function ChatSidebar() {
                     No previous Messages, click here to start a new chat
                   </p>
                   <p className={styles["con-timeStamp"]}>
-                    {new Date(conversation.users[0].createdAt).toLocaleString("en-US")}
                   </p>
                 </div>
               </div>
             );
           } else {
-            console.log(conversation)
             return (
               <div
                 key={index}
@@ -213,9 +196,10 @@ function ChatSidebar() {
                   {chatName}
                 </p>
                 <p className={styles["con-lastMessage"]}>
+                  {conversation.latestMessage.content}
                 </p>
                 <p className={styles["con-timeStamp"]}>
-                  {new Date(conversation.users[0].createdAt).toLocaleString("en-US")}
+                  {new Date(conversation.latestMessage.createdAt).toLocaleString("en-US")}
                 </p>
               </div>
             );

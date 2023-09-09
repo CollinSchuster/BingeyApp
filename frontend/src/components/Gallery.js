@@ -2,7 +2,7 @@ import React from 'react'
 import { Link, useParams } from 'react-router-dom';
 import styled from 'styled-components'
 import { useGlobalContext } from '../Context/global';
-import "../css/navbar.css"
+// import "../css/navbar.css"
 
 function Gallery() {
     const {getAnimePictures, pictures} = useGlobalContext()
@@ -23,7 +23,7 @@ function Gallery() {
     return (
         <GalleryStyled>
             <div className="back">
-                <Link to="/">
+                <Link to="/home">
                     <i className="fas fa-arrow-left"></i>
                     Back to Home
                 </Link>
@@ -76,6 +76,7 @@ const GalleryStyled = styled.div`
         display: inline-block;
         margin: 2rem;
         padding: 2rem;
+        margin-top: 4rem;
         overflow: hidden;
         background-color: #fff;
         border-radius: 7px;

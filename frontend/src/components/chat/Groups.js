@@ -14,11 +14,12 @@ import { myContext } from "./chatPage";
 function Groups() {
   // const [refresh, setRefresh] = useState(true);
   const { refresh, setRefresh } = useContext(myContext);
-
+  const navigate = useNavigate();
   const lightTheme = useSelector((state) => state.themeKey);
   const dispatch = useDispatch();
   const [groups, SetGroups] = useState([]);
   const {user} = useSelector((state) => state.auth)
+  const [otherUsers, setOtherUsers] = useState([]);
   // console.log("Data from LocalStorage : ", userData);
   const nav = useNavigate();
   if (!user) {
@@ -27,21 +28,24 @@ function Groups() {
   }
   
   useEffect(() => {
-    // console.log("Users refreshed : ", user.token);
     const config = {
       headers: {
         Authorization: `Bearer ${user.token}`,
       },
     };
-
     axios
       .get("http://localhost:3001/api/chat/fetchGroups", config)
       .then((response) => {
-  
         SetGroups(response.data);
       });
-  }, [refresh]);
+    axios.get("http://localhost:3001/api/users/fetchUsers", config).then((data) => {
+      // console.log("UData refreshed in Users panel ");
+      console.log(data)
+      setOtherUsers(data.data);
+      // setRefresh(!refresh); this was commented out in the code
+      });
 
+  }, [refresh]);
   return (
       <div className={styles["main-container"]}>
           <AnimatePresence>
@@ -84,7 +88,7 @@ function Groups() {
             {groups.map((group, index) => {
               if (group.groupAdmin !== user._id) {
                 return (<></>);
-              } else {
+              } else { 
                 return (
                   <div className={styles["ug-list"]}>
                     <motion.div
@@ -93,6 +97,7 @@ function Groups() {
                       className={styles["list-tem"]}
                       key={index}
                       onClick={() => {
+                        navigate("/messages/users") 
                       }}
                     >
                       <p className={styles["con-icon"]}>T</p>

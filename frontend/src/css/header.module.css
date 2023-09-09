@@ -1,6 +1,11 @@
+* {
+  font-family: 'Bangers', cursive;
+}
+
 .header {
   height: 15vh;
   width: 100vw;
+  min-height: 100px;
   background-color: rgb(207, 37, 37);
   font-size: 30px;
   display: flex;
@@ -38,6 +43,7 @@
   font-family: 'Bangers', cursive;
   position: fixed;
   left: 50%;
+  padding-right: 1rem;
   transform: translateX(-50%);
 }
 .user-btns li button {
@@ -46,6 +52,8 @@
   justify-content: flex-end;
   margin-right: 2vw;
   padding: 5px;
+
+  font-family: 'Bangers', cursive;
   font-size: large;
 
   border: 1px solid #000;
@@ -58,36 +66,19 @@
 .user-btns svg {
   margin-right: 8px;
 }
+
 .user-btns:hover {
   transform: scale(0.98);
 }
-
-.search-container {
+.user-link  {
   display: flex;
-  align-items: center;
-}
-
-.search-bar {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  margin-right: 2vw;
-  padding: 5px;
-  border: 1px solid #ccc;
   background-color: #FFF;
   border-radius: 5px;
+  margin-bottom: 1vw;
+  margin-right: 1vw;
+  padding: 0.5vw;
 }
 
-.search-bar h1 {
-  margin-right: 10px;
-}
-
-.search-bar input {
-  padding: 5px;
-  border: none;
-}
-
-.search-icon {
-  cursor: pointer;
-  margin-right: 10px;
+.user-link a {
+  padding-right: 0.5vw;
 }

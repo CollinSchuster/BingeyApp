@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { useGlobalContext } from '../Context/global'
 import styled from 'styled-components'
 import Sidebar from './Sidebar'
-import "../css/navbar.css"
+// import "../css/navbar.css"
 import Bookmark from "./Bookmark";
 
 function Upcoming({rendered}) {

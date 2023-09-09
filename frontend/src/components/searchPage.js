@@ -115,6 +115,10 @@ function SearchPage() {
 
 const HomepageStyled = styled.div`
   background: var(--bg-tertiary); 
+
+  h1 {
+    font-family: 'Bangers', cursive;
+  }
   header {
     padding: 2rem;
     transition: all 0.4s ease-in-out;
@@ -136,6 +140,9 @@ const HomepageStyled = styled.div`
       gap: 1rem;
       .grid-container {
         display: flex;
+      }
+      .filter-btn {
+        font-family: 'Bangers', cursive;
       }
 
       button {
@@ -159,12 +166,14 @@ const HomepageStyled = styled.div`
 
         .input-control {
           position: relative;
+          font-family: 'Bangers', cursive;
           transition: all 0.4s ease-in-out;
         }
 
         .input-control input {
           width: 80%;
-          padding: 0.5rem 1rem;
+          font-family: 'Bangers', cursive;
+          padding: 0.5rem 1.5rem;
           outline: none;
           border-radius: 30px;
           font-size: 1.2rem;

@@ -1,0 +1,32 @@
+
+
+.bookmarked-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 2fr));
+
+  position: relative;
+  background: var(--bg-tertiary); 
+  margin-top:20vh;
+  margin-left: 10vw;
+  height: 80vh;
+  width: 90vw;
+  /* padding-bottom: 2rem; */
+}
+
+.bookmarked-item {
+
+  display: flex; /* Added to make the images centered */
+  align-items: center; /* Added to make the images centered */
+  justify-content: center; /* Added to make the images centered */
+  overflow: hidden; /* Added to hide any overflowing content */
+
+  max-height: 330px;
+  max-width: 210px;
+  aspect-rato: 3/2;
+  border-radius: 7px;
+  margin-right: min(2rem,15px);
+  margin-left: min(2em,15px);
+  border: 5px solid #e5e7eb;
+
+}
+

@@ -1,0 +1,134 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+.App {
+  text-align: center;
+}
+
+.login-page-container {
+  display: flex;
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  justify-content: center;
+  align-items: center;
+}
+
+.login-container {
+  display: flex;
+  flex-direction: column; /* Stack elements vertically */
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh; /* Ensure the container takes up at least the full viewport height */
+  min-width: 75vw;
+  margin-top: -15vh
+}
+
+.login-heading {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #fff;
+}
+.login-heading h1 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.form {
+  min-height: 20vw;
+  min-width: 80%;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #fff;
+  margin-top: 20px; /* Add some spacing between the login-heading and the form */
+}
+
+
+.login-heading p {
+  color: #828282;
+}
+
+.form,
+.content {
+  margin: 1vh auto;
+}
+
+
+.form-group {
+  margin-bottom: 10px;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+  padding: 10px;
+  border: 1px solid #e6e6e6;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  font-family: inherit;
+}
+
+.form-group label {
+  text-align: left;
+  display: block;
+  margin: 0 0 5px 3px;
+}
+
+h1,
+h2,
+h3 {
+  font-family: 'Poppins', sans-serif;
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  font-weight: 600;
+}
+
+.heading-icon {
+  font-size: large;
+}
+p, .form-control{
+  font-family: 'Poppins', sans-serif;
+  min-width: 90%;
+  font-size: 2.5vw;
+}
+
+@media (min-width: 601px){
+  p, .form-control {
+    font-size: 14px;
+  }
+}
+
+@media (min-width: 750px) {
+  .login-page-container {
+    max-width: 800px;
+  }
+}
+
+@media (min-width: 1100px) {
+  .form {
+    min-height: 15vh;
+    min-width: 500px;
+  }
+}
+
+@media (max-height: 830px) {
+  .login-container {
+    margin-top: -60px;
+  }
+}
+
+@media (max-width: 600px) {
+
+  .login-heading h1 {
+    font-size: 2rem;
+  }
+
+  .login-heading p {
+    font-size: 1.5rem;
+  }
+}

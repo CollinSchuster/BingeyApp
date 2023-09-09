@@ -20,7 +20,7 @@ const chatModel = mongoose.Schema(
     },
   },
   {
-    timeStamp: true, // Enables createdAt and updatedAt
+    timestamps: true, // Enables createdAt and updatedAt
   }
 );
 
