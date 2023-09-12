@@ -23,15 +23,19 @@
   display: flex;
   border-radius: 20px;
 }
+.back-icon {
+  position: fixed;
+  margin-top: 2vh;
+}
 
 .sidebar-container {
-  flex: 0.3;
+  flex: 0.4;
   display: flex;
   flex-direction: column;
 }
 
 .chatArea-container {
-  flex: 0.7;
+  flex: 0.6;
 }
 
 .sb-header {
@@ -40,6 +44,7 @@
   padding: 10px 5px;
   margin: 10px;
   display: flex;
+  min-width: 220px;
   justify-content: space-between;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
     rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
@@ -74,6 +79,7 @@ input:focus {
   background-color: white;
   border-radius: 20px;
   padding: 5px 10px;
+  min-width: 180px;
   flex: 1;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
     rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
@@ -368,9 +374,10 @@ input:focus {
   display: flex;
   flex: 1;
   justify-content: space-evenly;
+  min-width: 210px;
 }
 
-@media only screen and (max-width: 40em) {
+/* @media only screen and (max-width: 50em) {
   .sb-search {
     display: none;
   }
@@ -394,5 +401,19 @@ input:focus {
   .main-container {
     height: 100vh;
     width: 100vw;
+  }
+} */
+
+@media only screen and (max-width: 780px) { /*use to be 40em first time and then I made it 50em*/
+  .main-container {
+    justify-content: center;
+    height: 100vh;
+    width: 100vw;
+  }
+  .sidebar-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    /* align-content: center; */
   }
 }

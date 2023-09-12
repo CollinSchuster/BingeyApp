@@ -58,7 +58,7 @@ const AiringStyled = styled.div`
     .airing-anime{
         position absolute;
         background: var(--bg-tertiary); 
-        padding-top: 2rem;
+        padding-top: -1rem;
         padding-right: min(1rem,10px);
         padding-bottom: 2rem;
         padding-left:6rem;  

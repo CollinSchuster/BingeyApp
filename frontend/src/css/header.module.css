@@ -3,7 +3,7 @@
 }
 
 .header {
-  height: 15vh;
+  height: calc(16.6vh + 5px);
   width: 100vw;
   min-height: 100px;
   background-color: rgb(207, 37, 37);

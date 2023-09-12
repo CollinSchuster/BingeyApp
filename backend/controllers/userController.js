@@ -36,6 +36,7 @@ const registerUser = asyncHandler(async(req, res) => {
     res.status(201).json({ // 201 is a created success status
       _id: user.id,
       name: user.name,
+      // fullname: user.fullname,
       email: user.email,
       isAdmin: user.isAdmin,
       token: generateToken(user._id) // puts in the actual token from the generateToken const below for the user with _id
@@ -59,6 +60,7 @@ const loginUser = asyncHandler(async(req, res) => {
     res.json({ // sends back the id name and email
       _id: user.id,
       name: user.name,
+      // fullname: user.fullname,
       email: user.email,
       isAdmin: user.isAdmin,
       token: generateToken(user._id) // puts in the actual token from the generateToken const below for the user with _id
@@ -90,6 +92,7 @@ const fetchAllUsersController = asyncHandler(async (req, res) => { //fetches all
     ? {
         $or: [
           { name: { $regex: req.query.search, $options: "i" } },
+          // { fullname: { $regex: req.query.search, $options: "i" } },
           { email: { $regex: req.query.search, $options: "i" } },
         ],
       }

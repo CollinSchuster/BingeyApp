@@ -62,8 +62,8 @@ font-size: 200%;
 .upcoming-anime{
     position absolute;
     background: var(--bg-tertiary); 
-    padding-top: 2rem;
     padding-right: min(1rem,10px);
+    padding-top: -2rem;
     padding-bottom: 2rem;
     padding-left:6rem;  
     width: 100%;

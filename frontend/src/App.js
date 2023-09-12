@@ -1,3 +1,4 @@
+import { createContext } from 'react';
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom'
 import Header from './components/Header.jsx';
 import Dashboard from './pages/Dashboard';
@@ -11,13 +12,13 @@ import SearchPage from "./components/searchPage";
 import Navbar from "./components/navbar";
 import 'react-toastify/dist/ReactToastify.css'
 import { ToastContainer } from 'react-toastify'
-
 import ChatPage from './components/chat/chatPage.js'
 import Welcome from "./components/chat/Welcome";
 import ChatArea from "./components/chat/chatArea";
 import Users from "./components/chat/Users";
 import CreateGroups from "./components/chat/CreateGroups";
 import Groups from "./components/chat/Groups";
+import PageNotFound from './pages/PageNotFound.jsx';
 
 function App() {
   return (
@@ -28,10 +29,10 @@ function App() {
             <Route path='/' element={<Dashboard />}></Route>
             <Route path='/login' element={<><Header /><Login /></>}></Route>
             <Route path='/register' element={<Register />}></Route>
-            <Route path='/home' element={<><Header /><Navbar /></>} />
+            <Route path='/home' element={<><Header /><Navbar /><Main/></>} />
             <Route path='/bookmarks' element={<><Header /><BookmarkPage /><Navbar /></>} />
             <Route path="/browse" element={<><Navbar /><SearchPage /></>} />
-            <Route path="/messages" element={<ChatPage />}>
+            <Route path="/messages" element={<><ChatPage /></>}>
               <Route path="welcome" element={<Welcome />}></Route>
               <Route path="chat/:_id" element={<ChatArea />}></Route>
               <Route path="users" element={<Users />}></Route>
@@ -40,6 +41,7 @@ function App() {
             </Route>
             <Route path="/anime/:id" element={<AnimeItem />} />
             <Route path="/character/:id" element={<Gallery />} />
+            <Route element={<PageNotFound />} />
           </Routes>
         </div>
       </Router>

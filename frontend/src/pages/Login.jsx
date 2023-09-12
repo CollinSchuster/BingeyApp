@@ -67,7 +67,7 @@ function Login() {
       <section className={styles['form']}>
         <form onSubmit={onSubmit}>
           <div className={styles['form-group']}>
-            <p>
+            <p className='text-box'>
               <input
                 type="email"
                 className={styles['form-control']}

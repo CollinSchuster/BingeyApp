@@ -47,12 +47,11 @@ const SidebarStyled = styled.div`
     padding-top:1rem;
     padding-bottom: 1rem;
     
-
-    .bookmark-icon-container {
+    .anime .bookmark-icon-container {
         z-index:1;
         position: relative;
         color: white;
-        top: 70px;
+        top: 75px;
         left: 75%;
     }
     i {

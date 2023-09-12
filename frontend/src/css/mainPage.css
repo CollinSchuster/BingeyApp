@@ -1,3 +1,51 @@
+:root {
+  --main-page-height: 1000px; /* Set the default height of .main-page */
+}
+.fa-primary {
+  color: #f6004d;
+}
+
+.fa-secondary {
+  color: #c50171;
+  background-color: rgb(35,35,46);
+}
+
+.fa-primary,
+.fa-secondary {
+  transition: var(--transition-speed);
+}
+
+.dark {
+  --text-primary: #b6b6b6;
+  --text-secondary: #ececec;
+  --bg-primary: rgb(35,35,46);
+  --bg-secondary: #141418;
+  --bg-tertiary: #1C1C23;
+}
+
+.light {
+  --text-primary: #1f1f1f;
+  --text-secondary: #000000;
+  --bg-primary: rgb(255,255,255);
+  --bg-secondary: #e4e4e4;
+  --bg-tertiary: #F2F2F2;
+
+}
+
+.solar {
+  --text-primary: #576e75;
+  --text-secondary: #35535c;
+  --bg-primary: rgb(253,246,227);
+  --bg-secondary: #f5e5b8;
+  --bg-tertiary: #faf5e9;
+}
+
+
+
+.main-page {
+  height: var(--main-page-height); /* Use the custom property for the height */
+}
+
 .trailer-block{
   display: flex;
   justify-content: center;
@@ -15,9 +63,20 @@
   transform: translateX(-50%);
 
 }
-
 #manual-trailer {
   width: 100%; 
   aspect-ratio: 16/9;
   pointer-events: none
+}
+
+.bottom-fade {
+  position:absolute;
+  bottom:calc(-1 * var(--main-page-height));
+  left: 0;
+  height: var(--main-page-height);
+  width: 100%;
+  opacity: 0.5;
+  --custom-opacity: 0.7;
+  background: var(--bg-primary);
+  background: linear-gradient(180deg, var(--bg-tertiary) 40%, rgba(63,212,214,0.6) 100%);
 }

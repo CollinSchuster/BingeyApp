@@ -57,7 +57,7 @@ const PopularStyled = styled.div`
     position: relative;
     color: white;
     top: 50px;
-    left: 75%;
+    left: 65%;
   }
   i {
     font-size: 200%;
@@ -77,6 +77,14 @@ const PopularStyled = styled.div`
     justify-content: center; /* Added to make the images centered */
     overflow: hidden; /* Added to hide any overflowing content */
   }
+  div {
+    max-height: 330px;
+    max-width: 210px;
+    aspect-rato: 3/2
+    border-radius: 7px;
+    margin-right: min(2rem,15px);
+    margin-left: min(2em,15px);
+  }
 
   a img {
     width: 100%;
@@ -92,6 +100,8 @@ const PopularStyled = styled.div`
       padding-left: 2rem;
       padding-right: min(1rem,10px);
       grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    }
+    .bookmark-icon-container {
     }
   }
 `;

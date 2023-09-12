@@ -55,32 +55,3 @@ function Bookmark({ anime }) { // Accepts anime as a prop
 }
 
 export default Bookmark
-
-
-
-// const onClick = (e) => {
-//   e.preventDefault();
-//   setIsBookmarked(!isBookmarked)
-
-//   // Dispatch an action to update the bookmark status in your Redux store
-//   // dispatch({
-//   //   type: 'UPDATE_BOOKMARK',
-//   //   payload: { malId: anime.mal_id, isBookmarked: !isBookmarked },
-//   // });
-// }
-// const iconStyle = {
-//   color: isBookmarked? 'orange' : 'white'
-// }
-// // Fetch initial bookmark status from the API when component mounts
-// useEffect((/*anime*/) => {
-//   // if (isBookmarked) {
-//   //   // Make an API request to check if the anime is bookmarked
-//   //   axios.get(`/api/bookmarks/${anime.mal_id}`)
-//   //   .then(response => {
-//   //     setIsBookmarked(response.data.isBookmarked);
-//   //   })
-//   //   .catch(error => {
-//   //     console.error('Error fetching bookmark status:', error);
-//   //   });
-//   // }
-// }, [/*isBookmarked*/]);

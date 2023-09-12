@@ -91,7 +91,7 @@ h3 {
 .heading-icon {
   font-size: large;
 }
-p, .form-control{
+.text-box, .form-control{
   font-family: 'Poppins', sans-serif;
   min-width: 90%;
   font-size: 2.5vw;
